@@ -1,0 +1,2 @@
+#!/bin/bash
+ls -t -p | grep -v / | head -n 11 | tail -n +2
