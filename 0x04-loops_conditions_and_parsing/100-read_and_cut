@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Bash script that Displays the content of the file /etc/passwd.
+
+
+con="/etc/passwd"
+read -r $con
+echo "$con"

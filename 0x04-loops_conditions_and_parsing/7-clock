@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# Displays the time for 12 hours and 59 minutes.
+
+h=-1
+m=60
+while [[ h -ne 12 || m -ne 60 ]]
+do
+    if [[ m -eq 60 ]]; then
+        h=$(( h+1 ))
+        echo "Hour: $h"
+        m=1
+    else
+        echo "$m"
+        m=$(( m+1 ))
+    fi
+done
