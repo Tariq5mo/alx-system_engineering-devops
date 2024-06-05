@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
 # Display the content of the current directory.
 
-ls -1 | cut -d "-" -f 2-
+a=$(ls -1) 
+echo "$a" | cut -d "-" -f 2-
