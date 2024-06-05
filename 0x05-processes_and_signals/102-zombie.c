@@ -38,4 +38,5 @@ int main(void)
 			continue;
 	}
 	infinite_while();
+	return (0);
 }
