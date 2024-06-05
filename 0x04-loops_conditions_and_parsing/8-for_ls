@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 # Display the content of the current directory.
 
-a=$(ls -1) 
-echo "$a" | cut -d "-" -f 2-
+li=$(ls -1)
+for i in $li;
+do
+    echo "$i" | cut -d "-" -f 2-
+done
