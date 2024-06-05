@@ -6,21 +6,21 @@ command=$1
 case $command in
     "start" )
         ./manage_my_process &
-        pgrep -f manage_my_process > /var/run/my_process.pid
+        echo $! > /var/run/my_process.pid
         echo "manage_my_process started" ;;
     "stop" )
         if test -f "/var/run/my_process.pid"; then
-            kill "$(head -n 1 "/var/run/my_process.pid")"
+            kill "$(cat "/var/run/my_process.pid")"
         fi
         rm /var/run/my_process.pid
         echo "manage_my_process stopped";;
     "restart" )
         if test -f "/var/run/my_process.pid"; then
-            kill "$(head -n 1 "/var/run/my_process.pid")"
+            kill "$(cat "/var/run/my_process.pid")"
         fi
         rm /var/run/my_process.pid
         ./manage_my_process &
-        pgrep -f manage_my_process > /var/run/my_process.pid
+        echo $! > /var/run/my_process.pid
         echo "manage_my_process restarted" ;;
     * )
         echo "Usage: manage_my_process {start|stop|restart}" ;;
