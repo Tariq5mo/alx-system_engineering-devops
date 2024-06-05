@@ -9,8 +9,6 @@ case $command in
         pgrep -f manage_my_process > /var/run/my_process.pid
         echo "manage_my_process started" ;;
     "stop" )
-        # pkill -TERM -f manage_my_process 2>/dev/null &
-        # wait manage_my_process 2>/dev/null &
         kill "$(head -n 1 "/var/run/my_process.pid")"
         rm /var/run/my_process.pid
         echo "manage_my_process stopped";;
