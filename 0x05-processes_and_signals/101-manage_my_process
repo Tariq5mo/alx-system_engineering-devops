@@ -9,11 +9,11 @@ case $command in
         pgrep -f manage_my_process > /var/run/my_process.pid
         echo "manage_my_process started" ;;
     "stop" )
-        pkill -TERM -f manage_my_process &
+        pkill -TERM -f manage_my_process 2>/dev/null &
         rm /var/run/my_process.pid
         echo "manage_my_process stopped";;
     "restart" )
-        pkill -TERM -f manage_my_process &
+        pkill -TERM -f manage_my_process 2>/dev/null &
         rm /var/run/my_process.pid
         ./manage_my_process &
         pgrep -f manage_my_process > /var/run/my_process.pid
