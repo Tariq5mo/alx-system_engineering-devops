@@ -1,4 +1,6 @@
-This project about **Processes and signals**
+
+# Project about Processes and signals
+
 We learned:
 What is a PID
 What is a process

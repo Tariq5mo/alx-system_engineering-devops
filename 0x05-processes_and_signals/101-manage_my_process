@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# manages manage_my_process.
+
+command=$1
+
+case $command in
+    "start" )
+        ./manage_my_process &
+        pgrep -f manage_my_process > /var/run/my_process.pid
+        echo "manage_my_process started" ;;
+    "stop" )
+        pkill -TERM -f manage_my_process &
+        rm /var/run/my_process.pid
+        echo "manage_my_process stopped";;
+    "restart" )
+        pkill -TERM -f manage_my_process &
+        rm /var/run/my_process.pid
+        ./manage_my_process &
+        pgrep -f manage_my_process > /var/run/my_process.pid
+        echo "manage_my_process restarted" ;;
+    * )
+        echo "Usage: manage_my_process {start|stop|restart}" ;;
+esac
