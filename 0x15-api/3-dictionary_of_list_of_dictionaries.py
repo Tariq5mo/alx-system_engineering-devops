@@ -34,5 +34,5 @@ if __name__ == "__main__":
             di["completed"] = value
         mydict[id_employee] = mylist
 
-    with open('todo_all_employees.json.json', 'w') as file:
+    with open('todo_all_employees.json', 'w') as file:
         json.dump(mydict, file)
