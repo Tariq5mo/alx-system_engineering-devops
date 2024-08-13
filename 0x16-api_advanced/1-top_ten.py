@@ -16,7 +16,7 @@ def top_ten(subreddit):
         "User-Agent": "linux:0x16.api.advanced:v1.0.0 (by /u/bdov_)"
     }
     res = requests.get(u, params=p, headers=h, allow_redirects=False)
-    if res.status_code == 404:
+    if res.status_code != 200:
         print("None")
         return
     result = res.json().get("data")
