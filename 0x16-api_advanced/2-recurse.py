@@ -5,32 +5,30 @@ containing the titles of all hot articles
 import requests
 
 
-def recurse(subreddit, hot_list=[], after="", count=0):
+def recurse(subreddit, hot_list=[], after=""):
     """
     returns a list containing the titles of all hot articles
     for a given subreddit.
     If no results are found for the given subreddit,
     the function should return None.
     """
+    if after is None:
+        return []
+
     h = {
-        "User-Agent": "linux:0x16.api.advanced:v1.0.0 (by /u/bdov_)"
+        "user-agent": "request"
     }
-    p = {
-        "after": after,
-        "count": count,
-        "limit": 100
-    }
-    u = "https://www.reddit.com/r/{}/hot/.json".format(subreddit)
-    res = requests.get(u, headers=h, params=p, allow_redirects=False)
-    if res.status_code == 404:
+    u = "https://www.reddit.com/r/{}/hot.json".format(subreddit)
+    u += "?limit=100&after={}".format(after)
+    res = requests.get(u, headers=h, allow_redirects=False)
+
+    if res.status_code != 200:
         return None
 
-    result = res.json().get("data")
-    after = result.get("after")
-    count += result.get("dist")
-    for foo in result.get("children"):
-        hot_list.append(foo.get("data").get("title"))
+    result = res.json()
+    hot = result.get("data").get("children")
 
-    if after is not None:
-        return recurse(subreddit, hot_list, after, count)
-    return hot_list
+    for post in hot:
+        hot_list.append(post.get("data").get("title"))
+
+    return hot_list + recurse(subreddit, [], result.get("data").get("after"))
