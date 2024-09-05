@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Installing nginx web server
+sudo su && apt-get update && apt-get install nginx -y\
+&& nginx && echo "Hello World!" > /var/www/html/*.html\
+&& nginx -s reload
