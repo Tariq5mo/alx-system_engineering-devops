@@ -1,10 +1,14 @@
 #!/usr/bin/env bash
-# Configure a Nginx server to redirect to another page
 sudo apt update
 sudo apt install nginx -y
-sudo ufw allow "Nginx HTTP"
-sudo nginx
-echo "Hello World!" > sudo tee /var/www/html/*.html
-sudo sed -i "/listen 80 default_server;/a location /redirect_me {\nroot localhost\nreturn 301 https://www.youtube.com/watch?v=QH2-TGUlwu4; \n} \n" /etc/nginx/sites-available/default
 
+# Allow Nginx through the firewall
+sudo ufw allow 'Nginx HTTP'
+
+echo "Hello World!" | sudo tee /var/www/html/index.html
+
+# Configure Nginx to redirect /redirect_me to another page
+sudo sed -i '/listen 80 default_server;/a \\n\tlocation /redirect_me {\n\t\treturn 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\n\t}\n' /etc/nginx/sites-available/default
+
+# Reload Nginx to apply the changes
 sudo nginx -s reload
