@@ -4,6 +4,6 @@ sudo apt update
 sudo apt install nginx -y
 sudo nginx
 echo "Hello World!" > sudo tee /var/www/html/*.html
-sudo sed -i "/listen 80 default_server;/a location ^/redirect_me {\nreturn 301 https://www.youtube.com/watch?v=QH2-TGUlwu4; \n} \n" /etc/nginx/sites-available/default
+sudo sed -i "/listen 80 default_server;/a location /redirect_me {\nreturn 301 https://www.youtube.com/watch?v=QH2-TGUlwu4; \n} \n" /etc/nginx/sites-available/default
 
 sudo nginx -s reload
