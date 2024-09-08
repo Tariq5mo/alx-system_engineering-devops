@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Configure a Nginx server to redirect to another page
 sudo apt update
 sudo apt install nginx -y
 
