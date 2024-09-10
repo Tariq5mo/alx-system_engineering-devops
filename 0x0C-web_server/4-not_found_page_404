@@ -7,7 +7,7 @@ sudo apt install nginx
 
 sudo ufw allow 'Nginx HTTP'
 
-printf "Ceci n'est pas une page\n" | sudo tee /usr/share/nginx/html/error_404.html
+printf "Ceci n'est pas une page \n\n" > /usr/share/nginx/html/error_404.html
 
 sudo sed -i '/listen 80 default_server;/a \\n\terror_page 404 /error_404.html;\nlocation = /error_404.html {\n\t\troot /usr/share/nginx/html;\ninternal;\n}\n' /etc/nginx/sites-enabled/default
 
