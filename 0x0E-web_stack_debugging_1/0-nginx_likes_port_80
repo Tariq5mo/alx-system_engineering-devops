@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# Fix a server
+nginx -s start
+sed '/https {/a\server {\n\tlisten 80 default_server;\n}' /etc/nginx/nginx.conf
+ufw allow 80/tcp
+nginx -s restart
