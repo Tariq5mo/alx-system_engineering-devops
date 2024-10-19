@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 # Fix a server
+docker run -p 80:80 ubuntu:20.04
 nginx -s start
 sed '/https {/a\server {\n\tlisten 80 default_server;\n}' /etc/nginx/nginx.conf
 ufw allow 80/tcp
